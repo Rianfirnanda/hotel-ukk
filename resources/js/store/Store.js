@@ -69,7 +69,7 @@ export default new Vuex.Store({
                 axios.post('/api/v1/auth/login', value)
                     .then(response => {
                         var { user, token } = response?.data
-                        var role = user?.level == 'administrator' ? 'administrator' : 'resepsionis'
+                        var role = user?.level
                         user = JSON.stringify(user)
 
                         commit('set_success', 'berhasil login, mengalihkan...')
@@ -87,13 +87,13 @@ export default new Vuex.Store({
 
                         localStorage.setItem('token', token)
                         localStorage.setItem('user', user)
-                        setTimeout(() => {
+                        /*setTimeout(() => {
                             var has_query = _qs('redirect')
                             if (!!has_query) 
                                 window.location = `${window.location.origin}${decodeURIComponent(has_query)}`
                             else 
                                 window.location = router.resolve({ name: `${role}-dashboard`}).href
-                        }, 3000)
+                        }, 3000)*/
                         resolve(response)
                     }).catch(e => {
                         localStorage.removeItem('token')
@@ -103,6 +103,22 @@ export default new Vuex.Store({
                         reject(e)
                     })
                 })
+        },
+        register({ commit }, { value }) {
+            return new Promise((resolve, reject) => {
+                axios.post('/api/v1/auth/register', value)
+                    .then(({ data }) => {
+                        commit('set_success', 'berhasil register, mengalihkan ke halaman login...')
+
+                        setTimeout(() => {
+                            window.location = router.resolve({ name: 'Login' }).href
+                        }, 3000)
+                    })
+                    .catch(e => {
+                        commit('set_errors', 'terjadi kesalahan pada server, silahkan cek data dan ulangi kembali.')
+                        reject(e)
+                    })
+            })
         },
         addUser({ commit }, { value }) {
             return new Promise((resolve, reject) => {

@@ -29,6 +29,27 @@ export default {
                 }
             })
         },
+        public_kamar({ commit }, id) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let { data } = await axios(`/api/v1/public/kamar/${id}`)
+                    resolve(data)
+                } catch (e) {
+                    reject(e)
+                }
+            })
+        },
+        public_fasilitas_kamar({ commit }, id){
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let { data } = await axios(`/api/v1/kamar/fasilitas/${id}`)
+                    resolve(data?.result)
+                } catch (e) {
+                    reject(e)
+                }
+            })
+        },
+
         kamar({ commit }, id) {
             return new Promise(async (resolve, reject) => {
                 try {

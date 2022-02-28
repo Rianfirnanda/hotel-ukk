@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">
-                            Sudah memiliki Akun? <router-link :to="_gerquery">Masuk</router-link>
+                            Sudah memiliki Akun? <router-link to="/login">Masuk</router-link>
                         </div>
                         <div class="simple-footer text-center mt-3">
                             Copyright &copy; {{ brand }} {{ year }}
@@ -89,12 +89,11 @@
         data() {
             return {
                form: {
-                   username: '',
+                   username: null,
                    level: 'tamu',
-                   nama: '',
-                   password: ''
+                   nama: null,
+                   password: null
                },
-               _getquery: { name: 'Login', query: { booking: this.$route.query }},
                year: new Date().getFullYear(),
                hitError: 0,
                forgotPass: false,
@@ -110,7 +109,7 @@
         },
         methods: {
             async register() {
-                await this.$store.dispatch('login', { value: this.form })
+                await this.$store.dispatch('register', { value: this.form })
             },
             close() {
                 this.$store.dispatch('close')

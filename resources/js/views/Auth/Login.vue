@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="mt-5 text-muted text-center">
-                            Belum memiliki Akun? <router-link :to="_gerquery">Daftar</router-link>
+                            Belum memiliki Akun? <router-link to="/register">Daftar</router-link>
                         </div>
                         <div class="simple-footer text-center mt-3">
                             Copyright &copy; {{ brand }} {{ year }}
@@ -82,7 +82,6 @@
                    username: '',
                    password: ''
                },
-               _getquery: { name: 'Login', query: { booking: this.$route.query }},
                year: new Date().getFullYear(),
                hitError: 0,
                forgotPass: false,
@@ -95,10 +94,33 @@
                 isError: state => state.isError,
                 isSuccess: state => state.isSuccess,
             }),
+            _reservasi() {
+                var _reservasi = localStorage.getItem('_reservasi')
+                if (_reservasi) {
+                    _reservasi = JSON.parse(_reservasi)
+                }
+                return _reservasi
+            }
         },
         methods: {
             async login() {
-                await this.$store.dispatch('login', { value: this.form })
+                try {
+                    let { data } = await this.$store.dispatch('login', { value: this.form })
+                    let { user } = data
+
+                    console.log(typeof this._reservasi)
+                    console.log(this._reservasi)
+                    if (!!this._reservasi) {
+                        let data1 = {...this._reservasi, admin_id: user?.id}
+                        console.log(data1)
+                        setTimeout(async() => {
+                            await this.$store.dispatch('pemesanan/reservasi', { value: data1 })
+                            localStorage.removeItem('_reservasi')
+                        }, 3000)
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
             },
             close() {
                 this.$store.dispatch('close')

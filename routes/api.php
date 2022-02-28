@@ -16,10 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'v1'], function() {
     Route::post('auth/login', 'AuthController@login');
+    Route::post('auth/register', 'AdminController@store');
 });
 
 Route::group(['prefix' => 'v1'], function() {
     Route::get('public/kamar', 'KamarController@index');
+    Route::get('public/kamar/{id}', 'KamarController@show');
+    Route::get('kamar/fasilitas/{id}', 'KamarController@fasilitas');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::resource('admin', 'AdminController');
@@ -28,7 +31,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::resource('fasilitas-hotel', 'FasilitasHotelController');
         Route::resource('pemesanan', 'PemesananController');
 
-        Route::get('kamar/fasilitas/{id}', 'KamarController@fasilitas');
+        // Route::get('kamar/fasilitas/{id}', 'KamarController@fasilitas');
     });
 });
 

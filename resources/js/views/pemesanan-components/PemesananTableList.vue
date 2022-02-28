@@ -54,7 +54,7 @@
                   </template>
                   <template #cell(aksi)="data">
                       <b-button
-                          variant="outline-bright"
+                          variant="outline-success"
                           size="sm"
                           class="mr-1"
                           :to="{ name: 'resepsionis-pemesanan-view', params: { id: data.item.id }  }"

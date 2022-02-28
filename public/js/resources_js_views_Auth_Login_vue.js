@@ -17,6 +17,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -110,18 +112,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         username: '',
         password: ''
       },
-      _getquery: {
-        name: 'Login',
-        query: {
-          booking: this.$route.query
-        }
-      },
       year: new Date().getFullYear(),
       hitError: 0,
       forgotPass: false
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapState)({
     error_messages: function error_messages(state) {
       return state.error_messages;
     },
@@ -134,27 +130,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     isSuccess: function isSuccess(state) {
       return state.isSuccess;
     }
-  })),
+  })), {}, {
+    _reservasi: function _reservasi() {
+      var _reservasi = localStorage.getItem('_reservasi');
+
+      if (_reservasi) {
+        _reservasi = JSON.parse(_reservasi);
+      }
+
+      return _reservasi;
+    }
+  }),
   methods: {
     login: function login() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var _yield$_this$$store$d, data, user, data1;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return _this.$store.dispatch('login', {
                   value: _this.form
                 });
 
-              case 2:
+              case 3:
+                _yield$_this$$store$d = _context2.sent;
+                data = _yield$_this$$store$d.data;
+                user = data.user;
+                console.log(_typeof(_this._reservasi));
+                console.log(_this._reservasi);
+
+                if (!!_this._reservasi) {
+                  data1 = _objectSpread(_objectSpread({}, _this._reservasi), {}, {
+                    admin_id: user === null || user === void 0 ? void 0 : user.id
+                  });
+                  console.log(data1);
+                  setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+                      while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            _context.next = 2;
+                            return _this.$store.dispatch('pemesanan/reservasi', {
+                              value: data1
+                            });
+
+                          case 2:
+                            localStorage.removeItem('_reservasi');
+
+                          case 3:
+                          case "end":
+                            return _context.stop();
+                        }
+                      }
+                    }, _callee);
+                  })), 3000);
+                }
+
+                _context2.next = 14;
+                break;
+
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 14:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2, null, [[0, 11]]);
       }))();
     },
     close: function close() {
@@ -527,7 +578,7 @@ var render = function () {
                 { staticClass: "mt-5 text-muted text-center" },
                 [
                   _vm._v("\n                        Belum memiliki Akun? "),
-                  _c("router-link", { attrs: { to: _vm._gerquery } }, [
+                  _c("router-link", { attrs: { to: "/register" } }, [
                     _vm._v("Daftar"),
                   ]),
                 ],

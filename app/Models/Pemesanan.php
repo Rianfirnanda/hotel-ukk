@@ -25,5 +25,6 @@ class Pemesanan extends Model
             'nama_tamu',
             'status_pemesanan',
             'tanggal_pesan',
+            'kode_pemesanan',
     ];
 }

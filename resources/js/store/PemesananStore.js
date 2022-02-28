@@ -26,5 +26,15 @@ export default {
                 }
             })
         },
+        reservasi({ commit }, { value }) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let { data } = await axios.post('/api/v1/pemesanan', value)
+                    resolve(data?.result)
+                } catch(e) {
+                    reject(e)
+                }
+            })
+        }
     },
 }

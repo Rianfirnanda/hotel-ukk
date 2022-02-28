@@ -10,16 +10,21 @@ const router = new Router({
   routes: [
     {
         path: '/',
-        component: () => import("./../views/FrontEnd"),
+        component: () => import("./../views/Frontend/App"),
         children: [
             {
                 name: 'home',
                 path: '/',
-                component: () => import('./../views/Frontend/About')
+                component: () => import('./../views/Frontend/Home2')
+            },
+            {
+                name: 'reservasi',
+                path: '/reservasi',
+                component: () => import('./../views/Frontend/Reservasi')
             },
             {
                 name: 'kamar',
-                path: '/kamar',
+                path: '/kamar/:id',
                 component: () => import('./../views/Frontend/Kamar')
             }
         ],
@@ -127,11 +132,28 @@ const router = new Router({
             component: () => import("./../views/Pemesanan/PemesananView")
         },
         {
+          name: "resepsionis-dashboard",
+          path: "/resepsionis/dashboard",
+          component: () => import("./../views/Starter"),
+        },
+        {
           name: "Tooltip",
           path: "/ui-elements/tooltip",
           component: () => import("./../views/ui-elements/Tooltip"),
         },
       ],
+    },
+    {
+      path: "/tamu",
+      component: () => import("./../layouts/full-layout/FullLayout"),
+      meta: { requireAuth: true },
+      children: [
+        {
+          name: "tamu-dashboard",
+          path: "/tamu/dashboard",
+          component: () => import("./../views/Starter"),
+        },
+      ]
     },
     {
         name: 'Login',

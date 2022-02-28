@@ -117,16 +117,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       form: {
-        username: '',
+        username: null,
         level: 'tamu',
-        nama: '',
-        password: ''
-      },
-      _getquery: {
-        name: 'Login',
-        query: {
-          booking: this.$route.query
-        }
+        nama: null,
+        password: null
       },
       year: new Date().getFullYear(),
       hitError: 0,
@@ -157,7 +151,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch('login', {
+                return _this.$store.dispatch('register', {
                   value: _this.form
                 });
 
@@ -591,7 +585,7 @@ var render = function () {
                 { staticClass: "mt-5 text-muted text-center" },
                 [
                   _vm._v("\n                        Sudah memiliki Akun? "),
-                  _c("router-link", { attrs: { to: _vm._gerquery } }, [
+                  _c("router-link", { attrs: { to: "/login" } }, [
                     _vm._v("Masuk"),
                   ]),
                 ],

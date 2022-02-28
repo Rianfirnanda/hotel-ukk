@@ -44,7 +44,30 @@ class PemesananController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $hasFilled = $request->has(['nama_pemesan', 'email_pemesan', 'nama_tamu', 'no_hp', 'tanggal_checkin', 'tanggal_checkout', 'jumlah_kamar_dipesan', 'admin_id', 'kamar_id']);
+
+        if ($hasFilled) {
+            $data = [
+                'nama_pemesan' => $request->nama_pemesan,
+                'email_pemesan' => $request->email_pemesan,
+                'nama_tamu' => $request->nama_tamu,
+                'no_hp' => $request->no_hp,
+                'tanggal_checkin' => $request->tanggal_checkin,
+                'tanggal_checkout' => $request->tanggal_checkout,
+                'jumlah_kamar_dipesan' => $request->jumlah_kamar_dipesan,
+                'admin_id' => $request->admin_id,
+                'kamar_id' => $request->kamar_id,
+                'kode_pemesanan' => '00'. count(Pemesanan::all()) + 1,
+                'status_pemesanan' => 'pesan',
+                'tanggal_pesan' => date('Y-m-d H:m:s'),
+            ];
+
+            Pemesanan::create($data);
+
+            return $this->sendResponse(true, $data);
+        } else {
+            return $this->wasWrong();
+        }
     }
 
     /**

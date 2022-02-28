@@ -518,7 +518,7 @@ var render = function () {
                   {
                     staticClass: "mr-1",
                     attrs: {
-                      variant: "outline-bright",
+                      variant: "outline-success",
                       size: "sm",
                       to: {
                         name: "resepsionis-pemesanan-view",
