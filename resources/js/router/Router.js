@@ -112,7 +112,7 @@ const router = new Router({
         {
           name: "administrator-dashboard",
           path: "/admin/dashboard",
-          component: () => import("./../views/Starter"),
+          component: () => import("./../views/Admin/Dashboard"),
         },
       ],
     },
@@ -186,7 +186,7 @@ router.beforeEach(async (to, from, next) => {
                     redirect: to.fullPath
                 }
             })
-        } 
+        }
         next()
     } catch (e) {
         console.log(e)

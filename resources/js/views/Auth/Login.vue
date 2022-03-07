@@ -110,14 +110,14 @@
 
                     console.log(typeof this._reservasi)
                     console.log(this._reservasi)
-                    if (!!this._reservasi) {
-                        let data1 = {...this._reservasi, admin_id: user?.id}
-                        console.log(data1)
-                        setTimeout(async() => {
-                            await this.$store.dispatch('pemesanan/reservasi', { value: data1 })
-                            localStorage.removeItem('_reservasi')
-                        }, 3000)
-                    }
+                    // if (!!this._reservasi) {
+                    //     let data1 = {...this._reservasi, admin_id: user?.id}
+                    //     console.log(data1)
+                    //     setTimeout(async() => {
+                    //         await this.$store.dispatch('pemesanan/reservasi', { value: data1 })
+                    //         localStorage.removeItem('_reservasi')
+                    //     }, 3000)
+                    // }
                 } catch (e) {
                     console.log(e)
                 }
@@ -132,7 +132,7 @@
             strfilter(v) {
                 this.form.username = this.form.username.replace(/\@|\<|\>|\/|\(|\)/g, '')
             }
-            
+
         },
         components: {
             ValidationProvider

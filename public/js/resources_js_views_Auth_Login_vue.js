@@ -145,67 +145,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     login: function login() {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _yield$_this$$store$d, data, user, data1;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _yield$_this$$store$d, data, user;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                _context.prev = 0;
+                _context.next = 3;
                 return _this.$store.dispatch('login', {
                   value: _this.form
                 });
 
               case 3:
-                _yield$_this$$store$d = _context2.sent;
+                _yield$_this$$store$d = _context.sent;
                 data = _yield$_this$$store$d.data;
                 user = data.user;
                 console.log(_typeof(_this._reservasi));
-                console.log(_this._reservasi);
+                console.log(_this._reservasi); // if (!!this._reservasi) {
+                //     let data1 = {...this._reservasi, admin_id: user?.id}
+                //     console.log(data1)
+                //     setTimeout(async() => {
+                //         await this.$store.dispatch('pemesanan/reservasi', { value: data1 })
+                //         localStorage.removeItem('_reservasi')
+                //     }, 3000)
+                // }
 
-                if (!!_this._reservasi) {
-                  data1 = _objectSpread(_objectSpread({}, _this._reservasi), {}, {
-                    admin_id: user === null || user === void 0 ? void 0 : user.id
-                  });
-                  console.log(data1);
-                  setTimeout( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            _context.next = 2;
-                            return _this.$store.dispatch('pemesanan/reservasi', {
-                              value: data1
-                            });
-
-                          case 2:
-                            localStorage.removeItem('_reservasi');
-
-                          case 3:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  })), 3000);
-                }
-
-                _context2.next = 14;
+                _context.next = 13;
                 break;
 
-              case 11:
-                _context2.prev = 11;
-                _context2.t0 = _context2["catch"](0);
-                console.log(_context2.t0);
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
 
-              case 14:
+              case 13:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2, null, [[0, 11]]);
+        }, _callee, null, [[0, 10]]);
       }))();
     },
     close: function close() {

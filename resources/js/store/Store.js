@@ -21,7 +21,7 @@ export default new Vuex.Store({
         success_messages: [],
         isError: false,
         isSuccess: false,
-        user: localStorage.getItem('user'),
+        user: JSON.parse(localStorage.getItem('user')),
         login_success: false,
     },
     mutations: {
@@ -87,13 +87,13 @@ export default new Vuex.Store({
 
                         localStorage.setItem('token', token)
                         localStorage.setItem('user', user)
-                        /*setTimeout(() => {
+                        setTimeout(() => {
                             var has_query = _qs('redirect')
-                            if (!!has_query) 
+                            if (!!has_query)
                                 window.location = `${window.location.origin}${decodeURIComponent(has_query)}`
-                            else 
+                            else
                                 window.location = router.resolve({ name: `${role}-dashboard`}).href
-                        }, 3000)*/
+                        }, 3000)
                         resolve(response)
                     }).catch(e => {
                         localStorage.removeItem('token')
