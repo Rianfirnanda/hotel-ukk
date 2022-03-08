@@ -20,7 +20,7 @@ export default {
             return new Promise(async (resolve, reject) => {
                 try {
                     let { data } = await axios(`/api/v1/pemesanan/${id}`)
-                    resolve(data?.result)
+                    resolve(data)
                 } catch (e) {
                     reject(e)
                 }
@@ -34,7 +34,7 @@ export default {
                 } catch(e) {
                     reject(e)
                 }
-            })
+            }) 
         }
     },
 }

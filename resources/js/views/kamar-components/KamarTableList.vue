@@ -127,7 +127,7 @@ export default {
                     }
                 })
             ])
-            
+
             this.$bvModal.msgBoxOk([message], {
                 title: title,
                 buttonSize: 'sm',
@@ -188,5 +188,5 @@ export default {
         }
     },*/
     components: {}
-}    
+}
 </script>

@@ -131,7 +131,8 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
       var _this = this;
 
       this.$store.dispatch('pemesanan/pemesanan', this.pemesanan_id).then(function (response) {
-        _this.pemesanan = response;
+        console.log('pemesanan:', response);
+        _this.pemesanan = response.result;
       })["catch"](function (e) {
         return console.log(e);
       });
@@ -381,106 +382,108 @@ var render = function () {
     [
       _c("h4", { staticClass: "card-title" }, [_vm._v("Data Pemesanan")]),
       _vm._v(" "),
-      _c(
-        "b-row",
-        { attrs: { cols: "1" } },
-        [
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Nama Pemesan")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.nama_pemesan))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Tanggal Pesan")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_pesan))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Email")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.email_pemesan))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("No HP")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.no_hp))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Nama Tamu")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.nama_tamu))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Jumlah Kamar")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.jumlah_kamar_dipesan))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Kode Pemesanan")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.kode_pemesanan))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Tanggal Check-In")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_checkin))]),
-          ]),
-          _vm._v(" "),
-          _c("b-col", [
-            _c("p", [_c("b", [_vm._v("Tanggal Check-Out")])]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_checkout))]),
-          ]),
-          _vm._v(" "),
-          _c(
-            "b-col",
+      !!_vm.pemesanan
+        ? _c(
+            "b-row",
+            { attrs: { cols: "1" } },
             [
-              _c("p", [_c("b", [_vm._v("Status Pemesanan")])]),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Nama Pemesan")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.nama_pemesan))]),
+              ]),
               _vm._v(" "),
-              _c("b-form-select", {
-                attrs: { options: _vm.options },
-                model: {
-                  value: _vm.pemesanan.status_pemesanan,
-                  callback: function ($$v) {
-                    _vm.$set(_vm.pemesanan, "status_pemesanan", $$v)
-                  },
-                  expression: "pemesanan.status_pemesanan",
-                },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "b-col",
-            [
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Tanggal Pesan")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_pesan))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Email")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.email_pemesan))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("No HP")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.no_hp))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Nama Tamu")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.nama_tamu))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Jumlah Kamar")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.jumlah_kamar_dipesan))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Kode Pemesanan")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.kode_pemesanan))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Tanggal Check-In")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_checkin))]),
+              ]),
+              _vm._v(" "),
+              _c("b-col", [
+                _c("p", [_c("b", [_vm._v("Tanggal Check-Out")])]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.pemesanan.tanggal_checkout))]),
+              ]),
+              _vm._v(" "),
               _c(
-                "b-button",
-                {
-                  staticClass: "mt-2",
-                  attrs: { variant: "success", size: "md" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.update(_vm.pemesanan.id)
+                "b-col",
+                [
+                  _c("p", [_c("b", [_vm._v("Status Pemesanan")])]),
+                  _vm._v(" "),
+                  _c("b-form-select", {
+                    attrs: { options: _vm.options },
+                    model: {
+                      value: _vm.pemesanan.status_pemesanan,
+                      callback: function ($$v) {
+                        _vm.$set(_vm.pemesanan, "status_pemesanan", $$v)
+                      },
+                      expression: "pemesanan.status_pemesanan",
                     },
-                  },
-                },
-                [_vm._v("Update")]
+                  }),
+                ],
+                1
               ),
-              _c("br"),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "mt-2",
+                      attrs: { variant: "success", size: "md" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.update(_vm.pemesanan.id)
+                        },
+                      },
+                    },
+                    [_vm._v("Update")]
+                  ),
+                  _c("br"),
+                ],
+                1
+              ),
             ],
             1
-          ),
-        ],
-        1
-      ),
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("br"),
       _c("br"),

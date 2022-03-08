@@ -10,7 +10,7 @@
             </b-card-body>
             <KamarFasilitasTableList />
         </b-card>
-    </div>
+    </div> 
 </template>
 <script>
     import { mapState } from 'vuex'
@@ -32,7 +32,7 @@
                 axios(`/api/v1/kamar/${id}`)
                     .then(response => {
                         let result = response.data
-                        this.kamar.nama_kamar = result.nama_kamar 
+                        this.kamar.nama_kamar = result.nama_kamar
                     })
                     .catch(e => {
                         this.$router.push({ name: 'admin-kamar' })

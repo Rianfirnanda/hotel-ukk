@@ -32,7 +32,7 @@ const router = new Router({
     {
       path: "/admin",
       component: () => import("./../layouts/full-layout/FullLayout"),
-      meta: { requireAuth: true },
+      meta: { requireAuth: true, role: 'admin' },
       children: [
         {
             name: 'admin-users',
@@ -119,7 +119,7 @@ const router = new Router({
     {
       path: "/resepsionis",
       component: () => import("./../layouts/full-layout/FullLayout"),
-      meta: { requireAuth: true },
+      meta: { requireAuth: true, role: 'resepsionis' },
       children: [
         {
             name: 'resepsionis-pemesanan',
@@ -134,7 +134,7 @@ const router = new Router({
         {
           name: "resepsionis-dashboard",
           path: "/resepsionis/dashboard",
-          component: () => import("./../views/Starter"),
+          component: () => import("./../views/Admin/Dashboard"),
         },
         {
           name: "Tooltip",
@@ -146,15 +146,35 @@ const router = new Router({
     {
       path: "/tamu",
       component: () => import("./../layouts/full-layout/FullLayout"),
-      meta: { requireAuth: true },
+      meta: { requireAuth: true, role: 'tamu' },
       children: [
         {
           name: "tamu-dashboard",
           path: "/tamu/dashboard",
-          component: () => import("./../views/Starter"),
+          component: () => import("./../views/Tamu/Dashboard"),
         },
+        {
+            name: "tamu-bookings",
+            path: "/tamu/bookings",
+            component: () => import("./../views/Tamu/Bookings"),
+          },
       ]
     },
+
+    {
+        path: "/error",
+        component: () => import("./../layouts/full-layout/FullLayout"),
+        meta: { requireAuth: true },
+        children: [
+          {
+            name: "error",
+            path: "/",
+            component: () => import("./../views/ErrorPage"),
+          },
+        ]
+      },
+
+
     {
         name: 'Login',
         path: '/login',
@@ -174,11 +194,16 @@ const router = new Router({
 
 router.beforeEach(async (to, from, next) => {
     var token = localStorage.getItem('token')
+    var user = JSON.parse(localStorage.getItem('user'))
+    console.log('user', user)
+
     try {
         var checkLogin = await check()
         var isAuth = to.matched.some(record => record.meta.requireAuth)
+        var role = to.matched.some(record => record.meta.role)
         // var cek = (!!token || !!checkLogin)
         var cek = !!checkLogin
+        console.log('role not user:', (role !== user?.level))
         if (isAuth && !cek) {
             next({
                 name: 'Login',

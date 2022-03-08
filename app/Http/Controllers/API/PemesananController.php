@@ -79,6 +79,10 @@ class PemesananController extends BaseController
     public function show($id)
     {
         $data = Pemesanan::where('id', $id)->first();
+        $kamar_id = $data->kamar_id;
+        $data['nama_kamar'] = Kamar::where('id', $kamar_id)->first()['nama_kamar'];
+        $data['harga_kamar'] = Kamar::where('id', $kamar_id)->first()['harga_kamar'];
+
         if (empty($data)) return $this->isEmpty();
         return $this->sendResponse(true, $data);
     }

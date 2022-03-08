@@ -1,7 +1,7 @@
 <template>
     <b-container fluid>
             <h4 class="card-title">Data Pemesanan</h4>
-            <b-row cols="1">
+            <b-row cols="1" v-if="!!pemesanan">
                 <b-col>
                     <p ><b>Nama Pemesan</b></p>
                     <p>{{ pemesanan.nama_pemesan }}</p>
@@ -75,7 +75,8 @@ export default {
         loadPemesanan() {
             this.$store.dispatch('pemesanan/pemesanan', this.pemesanan_id)
                 .then(response => {
-                    this.pemesanan = response
+                    console.log('pemesanan:', response)
+                    this.pemesanan = response.result
                 })
                 .catch(e => console.log(e))
         },
@@ -94,7 +95,7 @@ export default {
                     setTimeout(() => {
                         this.$router.push({ name: 'resepsionis-pemesanan' })
                     }, 2000)
-                    
+
                 })
                 .catch(e => {
                     console.log(e)

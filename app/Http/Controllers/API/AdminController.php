@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Admin;
+use App\Models\Pemesanan;
 
 class AdminController extends BaseController
 {
@@ -18,6 +19,11 @@ class AdminController extends BaseController
     public function index()
     {
         $data = Admin::all();
+        foreach($data as $key => $v) {
+            $id = $v->id;
+
+            $data[$key]['total_pemesanan'] = count(Pemesanan::where('admin_id', $id)->get());
+        }
         return $this->sendResponse(true, $data);
     }
 

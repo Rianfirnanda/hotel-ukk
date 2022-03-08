@@ -419,6 +419,24 @@ __webpack_require__.r(__webpack_exports__);
   title: 'Pemesanan',
   to: '/resepsionis/pemesanan',
   meta: 'resepsionis'
+}, {
+  id: "1",
+  icon: "mdi mdi-view-dashboard",
+  title: "Dashboard",
+  to: "/tamu/dashboard",
+  meta: 'tamu'
+}, {
+  id: "1",
+  icon: "mdi mdi-view-dashboard",
+  title: "Dashboard",
+  to: "/resepsionis/dashboard",
+  meta: 'resepsionis'
+}, {
+  id: '3',
+  icon: 'mdi mdi-book-multiple-variant',
+  title: 'Bookings',
+  to: '/tamu/bookings',
+  meta: 'tamu'
 }]);
 
 /***/ }),
